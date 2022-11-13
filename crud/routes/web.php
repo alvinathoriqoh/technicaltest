@@ -28,4 +28,4 @@ Route::post('admin/store', [App\Http\Controllers\AdminController::class, 'store'
 Route::get('admin/show/{id}', [App\Http\Controllers\AdminController::class, 'show']);
 Route::get('admin/edit/{id}', [App\Http\Controllers\AdminController::class, 'edit']);
 Route::get('admin/update/{id}', [App\Http\Controllers\AdminController::class, 'update']);
-Route::get('admin/delete/{id}', [App\Http\Controllers\AdminController::class, 'destroy']);
+Route::get('admin/destroy/{id}', [App\Http\Controllers\AdminController::class, 'destroy']);

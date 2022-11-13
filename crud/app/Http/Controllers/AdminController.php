@@ -99,6 +99,15 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $admin = User::findOrFail(decrypt($id))->delete();
+            if($admin){
+            return redirect()->back()->with("success", "data berhasil dihapus");
+        }else{
+            return redirect()->back()->withErrors("Terjadi kesalahan saat menghapus data");
+        }
+        } catch (\Exception $e) {
+            abort(404);
+        }
     }
 }

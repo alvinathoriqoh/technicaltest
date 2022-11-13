@@ -30,7 +30,7 @@
                              <td>
                              <a class="btn btn-info btn-sm" href ="{{url('/admin/show/'. encrypt($data->id))}}">Detail</a>
                              <a class="btn btn-success btn-sm" href ="{{url('/admin/edit/'. encrypt($data->id))}}">Edit</a>
-                             <a class="btn btn-danger btn-sm" onclick="return confirm('anda yakin menghapus {{ $data->name }}?')" href="{{ url('/admin/delete/' . encrypt($data->id)) }}">Delete</a>
+                             <a class="btn btn-danger btn-sm" onclick="return confirm('anda yakin menghapus {{ $data->name }}?')" href="{{ url('/admin/destroy/' . encrypt($data->id)) }}">Delete</a>
                             </td>
                             </tr>
                        @endforeach 
