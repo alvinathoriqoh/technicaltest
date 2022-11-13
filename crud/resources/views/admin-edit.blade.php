@@ -8,27 +8,29 @@
                 <div class="card-header">{{ __('Edit') }}</div>
 
             <div class="card-body">
-                <form method="POST" action="{{url('admin/store')}}">
-                @csrf
+                        @if (session("success"))
+                            <div class="alert alert-primary">{{ session('success') }}</div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                {!! implode('', $errors->all('<li>:message</li>')) !!}
+                            </div>
+                        @endif
+                        <form action="{{ url('/admin/update/' . $users->id) }}">
+                        @csrf
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Enter Name">
+                    <input type="text" class="form-control" name="name" value="{{ $users->name }}" placeholder="Enter Name">
                 </div>
                 <div class="form-group">
                     <label>Email address</label>
-                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter email">
+                    <input type="email" class="form-control" name="email" value="{{ $users->email }}" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password">
+                    <input type="password" class="form-control" name="password" value="{{ $users->password }}" placeholder="Password">
                 </div>
-                <div class="form-group">
-                    <label>Role</label>
-                    <select class="form-control" name="role">
-                    <option value="0">User</option>
-                    <option value="1">Admin</option>
-                    </select>
-                </div>
+                
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

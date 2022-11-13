@@ -39,10 +39,6 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $data=new User;
-        // $data['name']=$request->name;
-        // $data['email']=$request->email;
-        // $data['password']=$request->password;
-        // $data['role']=$request->role;
         $data->name=$request->name;
         $data->email=$request->email;
         $data->password=$request->password;
@@ -70,7 +66,12 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $admin = User::findOrFail(decrypt($id));
+            return view("admin-edit")->with(['users' => $admin]);
+        } catch(\Exception $e) {
+            abort(404);
+        }
     }
 
     /**
@@ -82,7 +83,12 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $admin = User::findOrFail($id)->update($request->except('_token'));
+            if($admin){
+                return redirect('admin/home')->with("success", "data berhasil diperbarui");
+            }else{
+                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+            }
     }
 
     /**
