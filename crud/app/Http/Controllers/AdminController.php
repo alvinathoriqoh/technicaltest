@@ -55,7 +55,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $admin = User::findOrFail(decrypt($id));
+            return view('admin-detail')->with(['users' => $admin]);
     }
 
     /**

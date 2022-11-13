@@ -14,7 +14,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
            
@@ -23,7 +23,9 @@
                               <td>{{ $no+1 }}</td>
                               <td>{{ $data->name }}</td>
                               <td>{{ $data->email }}</td>
-                              <td>{{ $data->role }}</td>
+                              <td>
+                              <a class="btn btn-info btn-sm" href ="{{url('/admin/show/'. encrypt($data->id))}}">Detail</a>
+                              </td>
                             </tr>
                        @endforeach 
                 </table>
